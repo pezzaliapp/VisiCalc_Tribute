@@ -12,26 +12,16 @@
 }
 .vc-mobile-btn:active{ background:#0b1230 }
 .vc-mobile-btn.small{ min-width: 34px; padding: 8px 6px; }
-.vc-mobile-btn.wide{ flex: 2 0 auto; }
 .vc-mobile-label{ color:#93a4cc; font-size: 12px; margin: 2px 0 0; }
 .vc-mobile-top{ display:flex; gap:6px; align-items:center; }
-.vc-input{
-  flex: 1; min-height: 36px; padding: 8px; border:1px solid #1d244a; border-radius:8px;
-  background:#0b1230; color:#eaf1ff; font: 15px/1.2 -apple-system, system-ui;
-}
+.vc-input{ flex: 1; min-height: 36px; padding: 8px; border:1px solid #1d244a; border-radius:8px; background:#0b1230; color:#eaf1ff; font: 15px/1.2 -apple-system, system-ui; }
 .vc-mobile-pane{ max-height: 45vh; overflow: hidden; }
-/* Landscape tweaks */
+/* Splash duplicated here for standalone testing pages as well */
+#vc-splash{ position:fixed; inset:0; background: radial-gradient(1000px 600px at 50% -20%, #172042, #0b1022); color:#eaf1ff; display:flex; align-items:center; justify-content:center; text-align:center; z-index:99999; opacity:1; transition: opacity .4s ease; font: 16px/1.4 -apple-system, system-ui, Segoe UI, Roboto, Arial; }
+#vc-splash .box{ padding:22px; border:1px solid #22305b; border-radius:14px; background:#0d1430; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+#vc-splash h1{ margin:0 0 6px; font-size:20px }
+#vc-splash p{ margin:0; color:#a9b4cf; font-size:13px }
 @media (orientation: landscape){
   .vc-mobile-bar{ padding:6px }
   .vc-mobile-btn{ min-width: 36px; padding: 8px 6px; }
 }
-/* Splash */
-#vc-splash{
-  position:fixed; inset:0; background: radial-gradient(1000px 600px at 50% -20%, #172042, #0b1022);
-  color:#eaf1ff; display:flex; align-items:center; justify-content:center; text-align:center;
-  z-index: 99999; opacity:1; transition: opacity .4s ease;
-  font: 16px/1.4 -apple-system, system-ui, Segoe UI, Roboto, Arial;
-}
-#vc-splash .box{ padding:22px; border:1px solid #22305b; border-radius:14px; background:#0d1430; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
-#vc-splash h1{ margin:0 0 6px; font-size:20px }
-#vc-splash p{ margin:0; color:#a9b4cf; font-size:13px }

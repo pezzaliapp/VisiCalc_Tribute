@@ -33,9 +33,7 @@
     else{ el.value = v.slice(0, s) + v.slice(t); el.selectionStart = el.selectionEnd = s; }
     el.focus(); dispatchInputEvent(el);
   }
-  function clearAll(){
-    var el = getEditorEl(); if(!el) return; el.value=''; el.focus(); dispatchInputEvent(el);
-  }
+  function clearAll(){ var el = getEditorEl(); if(!el) return; el.value=''; el.focus(); dispatchInputEvent(el); }
   function keyEventToGrid(code, key){
     var target = document.querySelector('.grid, .sheet, table, body') || document.body;
     try{ var e = document.createEvent('KeyboardEvent'); e.initEvent('keydown', true, true);
@@ -49,13 +47,9 @@
     }
     keyEventToGrid(13, 'Enter');
   }
-  function move(dir){
-    var codes = {left:37, up:38, right:39, down:40};
-    keyEventToGrid(codes[dir], 'Arrow'+dir.charAt(0).toUpperCase()+dir.slice(1));
-  }
+  function move(dir){ var codes = {left:37, up:38, right:39, down:40}; keyEventToGrid(codes[dir], 'Arrow'+dir.charAt(0).toUpperCase()+dir.slice(1)); }
   function buildUI(){
-    var bar = document.createElement('div');
-    bar.className = 'vc-mobile-bar';
+    var bar = document.createElement('div'); bar.className = 'vc-mobile-bar';
     bar.innerHTML =
       '<div class="vc-mobile-top">'+
         '<input id="vc_m_input" class="vc-input" placeholder="Formula / valore..." autocomplete="off">'+
@@ -91,36 +85,17 @@
     });
     var el = getEditorEl(); if(el){ el.addEventListener('input', syncInput); syncInput(); }
     var pasteBtn = document.getElementById('vc_m_paste');
-    pasteBtn.onclick = function(){
-      var text = window.prompt('Incolla il testo qui e premi OK:','');
-      if(text!=null){ insertText(text); syncInput(); }
-    };
-    function onResize(){
-      if(window.innerWidth > window.innerHeight){
-        document.body.className += ' vc-landscape';
-      }else{
-        document.body.className = document.body.className.replace(' vc-landscape','');
-      }
-    }
-    window.addEventListener('resize', onResize, false);
-    window.addEventListener('orientationchange', onResize, false);
-    onResize();
+    pasteBtn.onclick = function(){ var text = window.prompt('Incolla il testo qui e premi OK:',''); if(text!=null){ insertText(text); syncInput(); } };
+    function onResize(){ if(window.innerWidth > window.innerHeight){ document.body.className += ' vc-landscape'; } else { document.body.className = document.body.className.replace(' vc-landscape',''); } }
+    window.addEventListener('resize', onResize, false); window.addEventListener('orientationchange', onResize, false); onResize();
     function syncInput(){ var e = getEditorEl(); if(!e) return; topInput.value = e.value || ''; }
-    function addBtn(row, label, handler){
-      var b = document.createElement('button'); b.className='vc-mobile-btn'; b.textContent=label;
-      b.onclick=function(){ handler(); }; row.appendChild(b);
-    }
+    function addBtn(row, label, handler){ var b = document.createElement('button'); b.className='vc-mobile-btn'; b.textContent=label; b.onclick=function(){ handler(); }; row.appendChild(b); }
     function makeButtons(rowId, labels){
       var row = document.getElementById(rowId);
       for(var i=0;i<labels.length;i++){
         (function(lbl){
           var b = document.createElement('button'); b.className='vc-mobile-btn'; b.textContent = lbl;
-          b.onclick=function(){
-            if(lbl==='C'){ backspace(); syncInput(); return; }
-            if(lbl==='AC'){ clearAll(); syncInput(); return; }
-            if(lbl==='↵' || lbl==='=↵'){ enterCommit(); return; }
-            insertText(lbl); syncInput();
-          };
+          b.onclick=function(){ if(lbl==='C'){ backspace(); syncInput(); return; } if(lbl==='AC'){ clearAll(); syncInput(); return; } if(lbl==='↵'||lbl==='=↵'){ enterCommit(); return; } insertText(lbl); syncInput(); };
           row.appendChild(b);
         })(labels[i]);
       }
@@ -129,7 +104,6 @@
   function isSmallScreen(){ return Math.min(window.innerWidth, window.innerHeight) <= 820; }
   var touch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
   if(touch && isSmallScreen()){
-    if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', buildUI); }
-    else{ buildUI(); }
+    if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', buildUI); } else { buildUI(); }
   }
 })();

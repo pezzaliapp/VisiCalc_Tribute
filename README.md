@@ -1,14 +1,20 @@
-# 🧮 VisiCalc Tribute v2 — PWA
-**Novità**:
-- Funzioni: `AVERAGE`, `MIN`, `MAX`, `IF`, `VLOOKUP` (`CERCA_VERT`)
-- **Multi-sheets** con rinomina e aggiunta
-- **Ricalcolo incrementale** (grafo dipendenze)
-- Riferimenti **$A$1** accettati (utile per futuri “fill”)
-- Build **Legacy iOS 8** (senza SW/manifest), cartella `legacy_ios8/`
+# VisiCalc Tribute — pezzaliAPP (v2.6 Mobile)
 
-## Uso rapido
-- Formula: `=IF(A1>10, SUM(A1:B2), AVERAGE(A1:B2))`
-- Lookup: `=VLOOKUP(E2, A1:C20, 3, TRUE)`
+- Splash screen iniziale (2s, silenzioso)
+- Rilevamento automatico iPhone/Android
+- Tastierino mobile (A–Z, operatori, frecce, Enter)
+- Supporto rotazione
+- PWA installabile e offline-ready
 
-## Limiti
-- Copia/riempimento non implementati (i `$` sono accettati ma servono soprattutto per compatibilità)
+## Installazione
+Servi la cartella su un server statico (o `file://` per test veloci).  
+Su HTTPS registrerà anche il service worker.
+
+## Compatibilità testata
+- iPhone 5s (iOS 8.4.1)
+- iPhone 15 Pro Max (iOS 26)
+- macOS Safari, Windows Edge/Chrome, Android Chrome
+
+## Note
+- Engine formule minimale per test (SUM, AVERAGE, MIN, MAX, IF, VLOOKUP parziale).
+- CSV export/import incluso.

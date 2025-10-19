@@ -1,52 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>VisiCalc Tribute — pezzaliAPP</title>
   <meta name="theme-color" content="#0b1022">
-  <title>VisiCalc Tribute v2 — pezzaliAPP</title>
-  <meta name="description" content="Foglio elettronico ispirato a VisiCalc — multi-sheets, formule estese, offline PWA.">
   <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="icon" href="./icon-192.png" type="image/png">
-  <link rel="apple-touch-icon" href="./icon-192.png">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="./styles.css">
-  <style>body{background:#0b1022;color:#eaf1ff;margin:0}</style>
+  <style>
+    body{margin:0;background:#0b1022;color:#eaf1ff;font:15px/1.45 -apple-system,system-ui,Segoe UI,Roboto,Arial}
+    header{display:flex;gap:8px;align-items:center;position:sticky;top:0;background:#0e1533cc;border-bottom:1px solid #1d244a;padding:8px}
+    header input{flex:1;min-height:32px;background:#0b1230;border:1px solid #1d244a;border-radius:8px;color:#eaf1ff;padding:6px 8px}
+    header button{background:#101739;border:1px solid #1d244a;color:#eaf1ff;border-radius:8px;padding:6px 10px}
+    #gridWrap{overflow:auto;height:calc(100vh - 56px)}
+    table{border-collapse:collapse;width:max-content;min-width:100%}
+    th,td{border:1px solid #1d244a;min-width:72px;height:24px}
+    th{background:#111a3f;position:sticky;top:0;z-index:1}
+    .rowhdr{position:sticky;left:0;background:#111a3f;z-index:1;color:#a9b4cf}
+    td{background:#0d1430}
+    td.sel{outline:2px solid #2dd4bf;position:relative}
+    td input{width:100%;height:100%;box-sizing:border-box;background:transparent;border:0;color:#eaf1ff;padding:2px 4px}
+    .topright{margin-left:auto;display:flex;gap:6px}
+    .hidden{display:none}
+    /* Splash (CSS also in mobile.css for standalone) */
+    #vc-splash{position:fixed;inset:0;background: radial-gradient(1000px 600px at 50% -20%, #172042, #0b1022);color:#eaf1ff;display:flex;align-items:center;justify-content:center;text-align:center;z-index:99999;opacity:1;transition:opacity .4s ease;font:16px/1.4 -apple-system,system-ui,Segoe UI,Roboto,Arial}
+    #vc-splash .box{padding:22px;border:1px solid #22305b;border-radius:14px;background:#0d1430;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    #vc-splash h1{margin:0 0 6px;font-size:20px}
+    #vc-splash p{margin:0;color:#a9b4cf;font-size:13px}
+  </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">🧮 VisiCalc Tribute <span class="muted">v2</span></div>
-    <div class="actions">
-      <button id="btn-new" title="Nuovo foglio (svuota)">Nuovo</button>
-      <button id="btn-export" title="Esporta CSV">Export CSV</button>
-      <label class="file-btn">
-        Import CSV
-        <input id="file-import" type="file" accept=".csv,text/csv">
-      </label>
-      <button id="btn-help">Guida</button>
+  <div id="vc-splash"><div class="box"><h1>🧮 VisiCalc Tribute — pezzaliAPP</h1><p>powered by pezzaliAPP.com</p></div></div>
+  <header>
+    <span style="white-space:nowrap">Cella:&nbsp;<strong id="cellName">A1</strong></span>
+    <input id="formula-input" placeholder="Formula / valore... es. =A1+B1 o =SUM(A1:B3)">
+    <div class="topright">
+      <button id="btn-csv-exp">Export CSV</button>
+      <button id="btn-csv-imp">Import CSV</button>
+      <input id="csv-file" type="file" accept=".csv,text/csv" class="hidden">
+      <button id="btn-readme">README</button>
+      <button id="btn-timeline">Storia</button>
+      <button id="btn-guide">Formule</button>
     </div>
   </header>
+  <div id="gridWrap"><table id="grid"></table></div>
 
-  <nav id="tabs" class="tabs"></nav>
-
-  <section class="toolbar">
-    <div class="cell-indicator">
-      Cella: <span id="label-cell">A1</span>
-    </div>
-    <input id="formula" type="text" placeholder="=A1+B2 · SUM(A1:B3) · AVERAGE() · MIN/MAX · IF() · VLOOKUP(key, A1:B9, 2, TRUE)">
-    <button id="apply">↵ Applica</button>
-  </section>
-
-  <main id="sheet"></main>
-
-  <footer class="status">
-    <span id="status-text">Pronto.</span>
-    <span class="spacer"></span>
-    <span class="muted">© MIT — Alessandro Pezzali (pezzaliAPP)</span>
-  </footer>
-
-  <script src="./app.v2.4.1.js"></script>
-  <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js');}</script>
+  <script src="./app.v2.5.js"></script>
+  <script src="./index_splash_mobile_patch.js"></script>
+  <script>
+    // Doc links
+    document.getElementById('btn-readme').onclick = function(){ window.open('./readme.html','_blank'); };
+    document.getElementById('btn-timeline').onclick = function(){ window.open('./visicalc_timeline.html','_blank'); };
+    document.getElementById('btn-guide').onclick = function(){ window.open('./formulas_guide.html','_blank'); };
+    // CSV
+    document.getElementById('btn-csv-exp').onclick = App.exportCSV;
+    document.getElementById('btn-csv-imp').onclick = function(){ document.getElementById('csv-file').click(); };
+    document.getElementById('csv-file').addEventListener('change', App.importCSV, false);
+    // Hide splash after load
+    window.addEventListener('load', function(){
+      setTimeout(function(){
+        var s = document.getElementById('vc-splash');
+        if(s){ s.style.opacity='0'; setTimeout(function(){ s.parentNode && s.parentNode.removeChild(s); }, 400); }
+      }, 2000);
+    });
+  </script>
 </body>
 </html>
