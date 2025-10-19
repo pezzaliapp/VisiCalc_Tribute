@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1022">
+  <title>VisiCalc Tribute — pezzaliAPP</title>
+  <meta name="description" content="Un piccolo foglio elettronico in stile VisiCalc, offline-ready (PWA), con formule, salvataggio locale e CSV.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="./styles.css">
+  <style>body{background:#0b1022;color:#eaf1ff;margin:0}</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">🧮 VisiCalc Tribute <span class="muted">— PWA offline</span></div>
+    <div class="actions">
+      <button id="btn-new" title="Nuovo foglio (svuota)">Nuovo</button>
+      <button id="btn-export" title="Esporta CSV">Export CSV</button>
+      <label class="file-btn">
+        Import CSV
+        <input id="file-import" type="file" accept=".csv,text/csv">
+      </label>
+      <button id="btn-help">Guida</button>
+    </div>
+  </header>
+
+  <section class="toolbar">
+    <div class="cell-indicator">
+      Cella: <span id="label-cell">A1</span>
+    </div>
+    <input id="formula" type="text" placeholder="=A1+B2  ·  SUM(A1:B3)  ·  numeri, + - * /, parentesi, riferimenti cella">
+    <button id="apply">↵ Applica</button>
+  </section>
+
+  <main id="sheet"></main>
+
+  <footer class="status">
+    <span id="status-text">Pronto.</span>
+    <span class="spacer"></span>
+    <span class="muted">© MIT — Alessandro Pezzali (pezzaliAPP)</span>
+  </footer>
+
+  <script src="./app.js"></script>
+  <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js');}</script>
+</body>
+</html>
