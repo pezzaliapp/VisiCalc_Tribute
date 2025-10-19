@@ -6,7 +6,6 @@
   <title>VisiCalc Tribute — README</title>
   <style>
     body{margin:0;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#0b1022;color:#eaf1ff}
-    header{position:sticky;top:0;background:#0e1533cc;border-bottom:1px solid #1d244a;padding:12px 16px}
     main{max-width:960px;margin:0 auto;padding:20px}
     code,kbd{background:#0b1230;border:1px solid #1d244a;border-radius:6px;padding:2px 6px}
     pre{background:#0b1230;border:1px solid #1d244a;border-radius:10px;padding:12px;overflow:auto}
@@ -18,7 +17,9 @@
   </style>
 </head>
 <body>
-<header><strong>🧮 VisiCalc Tribute — README</strong></header>
+<header style="display:flex;justify-content:flex-end;align-items:center;padding:8px 10px;background:#0e1533cc;border-bottom:1px solid #1d244a;position:sticky;top:0;backdrop-filter:saturate(120%) blur(2px)">
+  <button onclick="location.href='./index.html'" style="background:#101739;border:1px solid #1d244a;color:#eaf1ff;border-radius:8px;padding:6px 12px;font:14px/1 system-ui,Segoe UI,Roboto,Arial;">🏠 Home</button>
+</header>
 <main>
   <h2>Cos'è</h2>
   <p>Un foglio elettronico minimale e veloce, ispirato a VisiCalc. Funziona anche offline (PWA).</p>
@@ -40,20 +41,12 @@
 =IF(A1>10, "ALTO", "BASSO")
 =VLOOKUP(A1, A1:B9, 2, TRUE)</pre>
 
-  <h3>Note</h3>
-  <ul>
-    <li>I valori testuali in operazioni sono trattati come <code>0</code>.</li>
-    <li>Numeri con virgola (es. <code>3,5</code>) accettati (trasformati in punto).</li>
-    <li>Gli intervalli devono essere continui e rettangolari.</li>
-  </ul>
-
   <div class="links">
-    <p>📜 <a href="./visicalc_timeline.html" target="_blank">Storia di VisiCalc (1978–1985)</a></p>
-    <p>🧮 <a href="./formulas_guide.html" target="_blank">Guida alle Formule (IT/EN)</a></p>
+    <p>📜 <a href="./visicalc_timeline.html" target="_self">Storia di VisiCalc (1978–1985)</a></p>
+    <p>🧮 <a href="./formulas_guide.html" target="_self">Guida alle Formule (IT/EN)</a></p>
   </div>
 
   <p class="muted">MIT — © Alessandro Pezzali (pezzaliAPP)</p>
 </main>
-<script> 'serviceWorker' in navigator && navigator.serviceWorker.register('./sw.js'); </script>
 </body>
 </html>
