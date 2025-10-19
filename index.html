@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
   <title>VisiCalc Tribute — pezzaliAPP</title>
   <meta name="theme-color" content="#0b1022">
-  <link rel="manifest" href="./manifest.webmanifest">
+
+  <!-- 🔹 cache-busting -->
+  <link rel="manifest" href="./manifest.webmanifest?v=2.6b3">
+
   <style>
     body{margin:0;background:#0b1022;color:#eaf1ff;font:15px/1.45 -apple-system,system-ui,Segoe UI,Roboto,Arial}
     header{display:flex;gap:8px;align-items:center;position:sticky;top:0;background:#0e1533cc;border-bottom:1px solid #1d244a;padding:8px}
@@ -44,8 +47,12 @@
   </header>
   <div id="gridWrap"><table id="grid"></table></div>
 
-  <script src="./app.v2.5.js"></script>
-  <script src="./index_splash_mobile_patch.js"></script>
+  <!-- 🔹 usa nuova versione che non mostra più gli zeri nelle celle vuote -->
+  <script src="./app.v2.6.js?v=2.6b3"></script>
+
+  <!-- 🔹 patch che carica automaticamente mobile.css e mobile-ui.js su smartphone -->
+  <script src="./index_splash_mobile_patch.js?v=2.6b3"></script>
+
   <script>
     // Doc links
     document.getElementById('btn-readme').onclick = function(){ window.open('./readme.html','_blank'); };
