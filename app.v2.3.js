@@ -45,6 +45,18 @@
   }
   function inBounds(rc){ return rc && rc.col>=0 && rc.col<COLS && rc.row>=0 && rc.row<ROWS; }
 
+  function parseNumberLike(s){
+    if(s===null || s===undefined) return null;
+    s = (s+'').trim();
+    if(!s) return null;
+    // normalize decimal comma -> dot
+    var norm = s.replace(',', '.');
+    var n = parseFloat(norm);
+    if(!isNaN(n) && /^\s*[\+\-]?\d*(?:[\.,]\d+)?\s*$/.test(s)) return n;
+    return null;
+  }
+
+
   function createEmptySheet(name){
     var data = new Array(ROWS);
     for(var r=0;r<ROWS;r++){
@@ -358,7 +370,7 @@
             var rowVals = [];
             for(var c=0;c<rr.length;c++){
               var v = evalCell(sheetIdx, rr[c].row, rr[c].col, {});
-              var n = parseFloat(v); rowVals.push(isNaN(n)? v : n);
+              var n = (typeof v==="string") ? parseFloat(v.replace(',', '.')) : parseFloat(v); rowVals.push(isNaN(n)? v : n);
             }
             table.push(rowVals);
           }
@@ -394,7 +406,7 @@
       var rc = parseCellRef(ref);
       if(!inBounds(rc)) return '0';
       var v = evalCell(sheetIdx, rc.row, rc.col, visiting);
-      var n = parseFloat(v);
+      var n = (typeof v==="string") ? parseFloat(v.replace(',', '.')) : parseFloat(v);
       if(!isNaN(n)) return String(n);
       // strings: quote
       if(typeof v === 'string'){
@@ -411,7 +423,7 @@
     // After function replacements, replace remaining single refs with numeric/strings
     ex = substituteRefs(sheetIdx, ex, visiting);
     // Allow + - * / ( ) whitespace and comparisons for nested IF results
-    if(!/^[0-9\.\+\-\*\/\(\)\s\<\>\=\!\"\,]+$/.test(ex)) throw new Error('Espressione non valida');
+    if(!/^[0-9\.\+\-\*\/\(\)\s\<\>\=\!\"\,]+$/.test(ex)) throw new Error("Espressione non valida");
     return Function('"use strict";return (' + ex + ')')();
   }
 
@@ -504,7 +516,7 @@
     // update deps: clear old deps, then after setting formula, re-scan and register
     clearDepsOf(active, r, c);
     if(text.length>0 && text.charAt(0) === '='){ book[active].data[r][c].f = text; }
-    else{ book[active].data[r][c].f=''; book[active].data[r][c].v=text; }
+    else{ book[active].data[r][c].f=''; var num = parseNumberLike(text); book[active].data[r][c].v = (num===null? text : num); }
     // register new deps
     if(book[active].data[r][c].f){
       var refs = findRefs(active, book[active].data[r][c].f);
