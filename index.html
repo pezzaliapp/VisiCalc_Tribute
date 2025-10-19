@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="theme-color" content="#0b1022">
-  <title>VisiCalc Tribute — pezzaliAPP</title>
-  <meta name="description" content="Un piccolo foglio elettronico in stile VisiCalc, offline-ready (PWA), con formule, salvataggio locale e CSV.">
+  <title>VisiCalc Tribute v2 — pezzaliAPP</title>
+  <meta name="description" content="Foglio elettronico ispirato a VisiCalc — multi-sheets, formule estese, offline PWA.">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="./icon-192.png">
@@ -16,7 +16,7 @@
 </head>
 <body>
   <header class="topbar">
-    <div class="brand">🧮 VisiCalc Tribute <span class="muted">— PWA offline</span></div>
+    <div class="brand">🧮 VisiCalc Tribute <span class="muted">v2</span></div>
     <div class="actions">
       <button id="btn-new" title="Nuovo foglio (svuota)">Nuovo</button>
       <button id="btn-export" title="Esporta CSV">Export CSV</button>
@@ -28,11 +28,13 @@
     </div>
   </header>
 
+  <nav id="tabs" class="tabs"></nav>
+
   <section class="toolbar">
     <div class="cell-indicator">
       Cella: <span id="label-cell">A1</span>
     </div>
-    <input id="formula" type="text" placeholder="=A1+B2  ·  SUM(A1:B3)  ·  numeri, + - * /, parentesi, riferimenti cella">
+    <input id="formula" type="text" placeholder="=A1+B2 · SUM(A1:B3) · AVERAGE() · MIN/MAX · IF() · VLOOKUP(key, A1:B9, 2, TRUE)">
     <button id="apply">↵ Applica</button>
   </section>
 

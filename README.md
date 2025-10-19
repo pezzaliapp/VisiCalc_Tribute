@@ -1,23 +1,14 @@
-# 🧮 VisiCalc Tribute — PWA (offline)
+# 🧮 VisiCalc Tribute v2 — PWA
+**Novità**:
+- Funzioni: `AVERAGE`, `MIN`, `MAX`, `IF`, `VLOOKUP` (`CERCA_VERT`)
+- **Multi-sheets** con rinomina e aggiunta
+- **Ricalcolo incrementale** (grafo dipendenze)
+- Riferimenti **$A$1** accettati (utile per futuri “fill”)
+- Build **Legacy iOS 8** (senza SW/manifest), cartella `legacy_ios8/`
 
-Un **mini foglio elettronico** ispirato a VisiCalc:
-- Griglia **A..Z × 50 righe**
-- **Formule**: `=A1+B2`, operatori `+ - * /`, **parentesi**
-- **Intervalli** e **SUM(range)** es. `=SUM(A1:B3)`
-- **Salvataggio locale** (localStorage)
-- **Export/Import CSV**
-- **Offline-ready (PWA)** con `sw.js` e `manifest.webmanifest`
+## Uso rapido
+- Formula: `=IF(A1>10, SUM(A1:B2), AVERAGE(A1:B2))`
+- Lookup: `=VLOOKUP(E2, A1:C20, 3, TRUE)`
 
-## ▶️ Uso rapido
-1. Apri `index.html`
-2. Seleziona una cella, scrivi nella barra formula (es. `=A1+B2*3`) e premi **↵ Applica**
-3. **Freccette** per muoverti
-4. Export/Import CSV dal menu in alto
-
-## Limiti (v1)
-- Ricalcolo **full-sheet** (semplice, non incrementale)
-- Solo funzione **SUM(range)** (espandibile)
-- Tratta riferimenti **non numerici** come `0` nelle espressioni
-
-## Licenza
-MIT — © Alessandro Pezzali (pezzaliAPP)
+## Limiti
+- Copia/riempimento non implementati (i `$` sono accettati ma servono soprattutto per compatibilità)

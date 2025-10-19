@@ -1,23 +1,9 @@
-<!doctype html>
-<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VisiCalc Tribute — README</title>
-<link rel="stylesheet" href="./styles.css">
-<style>main{max-width:900px;margin:20px auto;padding:16px;background:#0d1430;border:1px solid var(--line);border-radius:12px}</style>
-</head><body>
-<header class="topbar"><div class="brand">🧮 VisiCalc Tribute — README</div></header>
-<main>
-<h2>Che cos'è</h2>
-<p>Un foglio elettronico minimale, ispirato a VisiCalc, offline-ready e salvato in locale.</p>
-<h3>Funzioni</h3>
-<ul>
-  <li>Griglia A..Z × 50 righe</li>
-  <li>Formule: <code>=A1+B2</code>, operatori <code>+ - * /</code>, parentesi</li>
-  <li>Intervalli e <code>SUM(A1:B3)</code></li>
-  <li>Export/Import CSV</li>
-  <li>PWA con Service Worker</li>
-</ul>
-<h3>Note tecniche</h3>
-<p>Engine formule molto semplice: ogni modifica ricalcola l'intero foglio; i riferimenti non numerici valgono 0.</p>
-<p>Licenza MIT — © Alessandro Pezzali (pezzaliAPP)</p>
-</main>
-</body></html>
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VisiCalc Tribute v2 — README</title><link rel="stylesheet" href="./styles.css">
+<style>main{max-width:900px;margin:20px auto;padding:16px;background:#0d1430;border:1px solid var(--line);border-radius:12px}</style></head>
+<body><header class="topbar"><div class="brand">🧮 VisiCalc Tribute v2 — README</div></header>
+<main><h2>Funzioni</h2><ul>
+<li>SUM, AVERAGE, MIN, MAX</li><li>IF(condizione, vero, falso)</li><li>VLOOKUP/CERCA_VERT</li><li>Multi-sheets con tab e rinomina</li>
+<li>Incremental recalc (deps graph)</li><li>Riferimenti $A$1 accettati</li></ul>
+<h3>Legacy iOS 8</h3><p>Usa la cartella <code>legacy_ios8/</code>: apri <code>index.html</code>. Niente Service Worker/manifest.</p>
+<p>Licenza MIT — © Alessandro Pezzali (pezzaliAPP)</p></main></body></html>
