@@ -5,49 +5,67 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>VisiCalc Tribute — Guida Formule</title>
   <style>
-    body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#0b1022;color:#eaf1ff}
-    main{max-width:1000px;margin:0 auto;padding:20px}
-    section{margin-bottom:26px;background:#0d1430;border:1px solid #1d244a;border-radius:12px;padding:16px}
-    h2{margin:0 0 8px}
-    code{background:#0b1230;border:1px solid #1d244a;border-radius:6px;padding:2px 6px}
-    pre{background:#0b1230;border:1px solid #1d244a;border-radius:10px;padding:12px;overflow:auto}
-    table{width:100%;border-collapse:collapse;margin-top:8px}
-    th,td{border:1px solid #1d244a;padding:8px;text-align:left}
-    th{background:#111a3f}
-    a{color:#8fd2ff}
+    :root{
+      --bg:#0b1022; --ink:#eaf1ff; --muted:#a9b4cf; --line:#1d244a; --card:#0d1430; --accent:#2dd4bf;
+    }
+    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    header{display:flex;justify-content:flex-end;align-items:center;padding:8px 10px;background:#0e1533cc;border-bottom:1px solid var(--line);position:sticky;top:0;backdrop-filter:saturate(120%) blur(2px)}
+    button{background:#101739;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 12px;font:14px/1 system-ui,Segoe UI,Roboto,Arial;cursor:pointer}
+    main{max-width:980px;margin:0 auto;padding:22px}
+    section{margin-bottom:28px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+    h1,h2{margin:0 0 10px}
+    h1{font-size:20px;color:var(--accent)}
+    h2{font-size:18px}
+    p{color:var(--muted);margin:6px 0 14px}
+    code{background:#0b1230;border:1px solid var(--line);border-radius:6px;padding:2px 6px}
+    pre{background:#0b1230;border:1px solid var(--line);border-radius:10px;padding:12px;overflow:auto;margin-top:10px}
+    table{width:100%;border-collapse:collapse;margin-top:8px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+    th,td{border:1px solid var(--line);padding:8px;text-align:left}
+    th{background:#111a3f;color:#eaf1ff;position:sticky;top:0}
+    tr:nth-child(even){background:#101739}
+    a{color:#8fd2ff;text-decoration:none}
+    footer{text-align:center;color:#5f6b8f;font-size:13px;margin:24px 0 12px}
   </style>
 </head>
 <body>
-<header style="display:flex;justify-content:flex-end;align-items:center;padding:8px 10px;background:#0e1533cc;border-bottom:1px solid #1d244a;position:sticky;top:0;backdrop-filter:saturate(120%) blur(2px)">
-  <button onclick="location.href='./index.html'" style="background:#101739;border:1px solid #1d244a;color:#eaf1ff;border-radius:8px;padding:6px 12px;font:14px/1 system-ui,Segoe UI,Roboto,Arial;">🏠 Home</button>
+<header>
+  <button onclick="location.href='./index.html'">🏠 Home</button>
 </header>
 <main>
-<section>
-  <h2>Operatori</h2>
-  <table>
-    <tr><th>Operatore</th><th>Esempio</th><th>Descrizione</th></tr>
-    <tr><td><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code></td><td><code>=A1+B1</code>, <code>=(A1+B1)*C1</code></td><td>Somma, sottrazione, prodotto, divisione</td></tr>
-    <tr><td>Parentesi</td><td><code>=(A1+B1)*C1</code></td><td>Controllo della precedenza</td></tr>
-  </table>
-</section>
-<section>
-  <h2>Funzioni</h2>
-  <table>
-    <tr><th>IT</th><th>EN</th><th>Sintassi</th><th>Esempio</th></tr>
-    <tr><td>—</td><td>SUM</td><td><code>=SUM(A1:B3)</code></td><td>Somma</td></tr>
-    <tr><td>—</td><td>AVERAGE</td><td><code>=AVERAGE(A1:B3)</code></td><td>Media aritmetica</td></tr>
-    <tr><td>—</td><td>MIN</td><td><code>=MIN(A1:B3)</code></td><td>Minimo</td></tr>
-    <tr><td>—</td><td>MAX</td><td><code>=MAX(A1:B3)</code></td><td>Massimo</td></tr>
-    <tr><td>CERCA_VERT (alias)</td><td>VLOOKUP</td><td><code>=VLOOKUP(chiave, A1:B9, 2, [TRUE|FALSE])</code></td><td><code>=VLOOKUP(A1, A1:B9, 2, TRUE)</code></td></tr>
-    <tr><td>—</td><td>IF</td><td><code>=IF(condizione, vero, falso)</code></td><td><code>=IF(A1>10, "ALTO", "BASSO")</code></td></tr>
-  </table>
-</section>
-<section>
-  <h2>Esempi utili</h2>
-  <pre>=SUM(A1:A10)+B1*2
+  <section>
+    <h1>VisiCalc Tribute — Guida alle Formule</h1>
+    <p>Questa guida riassume le principali funzioni e operatori supportati dal foglio di calcolo. Tutte le formule possono essere scritte in maiuscolo o minuscolo, in italiano o inglese.</p>
+  </section>
+
+  <section>
+    <h2>Operatori base</h2>
+    <table>
+      <tr><th>Operatore</th><th>Esempio</th><th>Descrizione</th></tr>
+      <tr><td><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code></td><td><code>=A1+B1</code>, <code>=(A1+B1)*C1</code></td><td>Somma, sottrazione, prodotto, divisione</td></tr>
+      <tr><td>Parentesi</td><td><code>=(A1+B1)*C1</code></td><td>Controlla la precedenza delle operazioni</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Funzioni disponibili</h2>
+    <table>
+      <tr><th>IT</th><th>EN</th><th>Sintassi</th><th>Esempio</th></tr>
+      <tr><td>—</td><td>SUM</td><td><code>=SUM(A1:B3)</code></td><td>Somma un intervallo</td></tr>
+      <tr><td>—</td><td>AVERAGE</td><td><code>=AVERAGE(A1:B3)</code></td><td>Calcola la media aritmetica</td></tr>
+      <tr><td>—</td><td>MIN</td><td><code>=MIN(A1:B3)</code></td><td>Trova il valore minimo</td></tr>
+      <tr><td>—</td><td>MAX</td><td><code>=MAX(A1:B3)</code></td><td>Trova il valore massimo</td></tr>
+      <tr><td>CERCA_VERT</td><td>VLOOKUP</td><td><code>=VLOOKUP(chiave, A1:B9, 2, [TRUE|FALSE])</code></td><td><code>=VLOOKUP(A1, A1:B9, 2, TRUE)</code></td></tr>
+      <tr><td>—</td><td>IF</td><td><code>=IF(condizione, vero, falso)</code></td><td><code>=IF(A1&gt;10, "ALTO", "BASSO")</code></td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Esempi pratici</h2>
+    <pre>=SUM(A1:A10)+B1*2
 =IF(AVERAGE(A1:A5)>10, MAX(B1:B5), MIN(B1:B5))
 =VLOOKUP(E2, A1:C20, 3, FALSE)</pre>
-</section>
+  </section>
 </main>
+<footer>© 2025 pezzaliAPP — Tribute Edition</footer>
 </body>
 </html>
