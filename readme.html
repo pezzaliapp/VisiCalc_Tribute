@@ -1,9 +1,82 @@
-<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VisiCalc Tribute v2 — README</title><link rel="stylesheet" href="./styles.css">
-<style>main{max-width:900px;margin:20px auto;padding:16px;background:#0d1430;border:1px solid var(--line);border-radius:12px}</style></head>
-<body><header class="topbar"><div class="brand">🧮 VisiCalc Tribute v2 — README</div></header>
-<main><h2>Funzioni</h2><ul>
-<li>SUM, AVERAGE, MIN, MAX</li><li>IF(condizione, vero, falso)</li><li>VLOOKUP/CERCA_VERT</li><li>Multi-sheets con tab e rinomina</li>
-<li>Incremental recalc (deps graph)</li><li>Riferimenti $A$1 accettati</li></ul>
-<h3>Legacy iOS 8</h3><p>Usa la cartella <code>legacy_ios8/</code>: apri <code>index.html</code>. Niente Service Worker/manifest.</p>
-<p>Licenza MIT — © Alessandro Pezzali (pezzaliAPP)</p></main></body></html>
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>VisiCalc Tribute — README v2.5</title>
+  <style>
+    body{margin:0;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#0b1022;color:#eaf1ff}
+    header{position:sticky;top:0;background:#0e1533cc;border-bottom:1px solid #1d244a;padding:12px 16px}
+    main{max-width:960px;margin:0 auto;padding:20px}
+    code,kbd{background:#0b1230;border:1px solid #1d244a;border-radius:6px;padding:2px 6px}
+    pre{background:#0b1230;border:1px solid #1d244a;border-radius:10px;padding:12px;overflow:auto}
+    a{color:#8fd2ff}
+    h1,h2,h3{margin:16px 0 8px}
+    ul{margin:8px 0 16px 22px}
+    .panel{margin:12px 0 18px; padding:12px; border:1px solid #1d244a; border-radius:10px; background:#0d1430;}
+    .muted{color:#93a4cc}
+  </style>
+</head>
+<body>
+<header><strong>🧮 VisiCalc Tribute — README v2.5</strong></header>
+<main>
+
+<section id="audio-book" class="panel">
+  <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+    <strong style="margin-right:8px;">🔊 Ascolta questa pagina</strong>
+    <button id="ab-play">▶︎ Play</button>
+    <button id="ab-pause">⏸ Pausa</button>
+    <button id="ab-resume">⏵ Riprendi</button>
+    <button id="ab-stop">⏹ Stop</button>
+    <label style="margin-left:8px;">Velocità
+      <input id="ab-rate" type="range" min="0.7" max="1.3" step="0.05" value="1" style="vertical-align:middle;">
+      <span id="ab-rate-val">1.0×</span>
+    </label>
+  </div>
+  <div id="ab-mode" class="muted" style="margin-top:6px;">Modalità: auto</div>
+  <div id="ab-progress" style="margin-top:8px; font-size:14px;"></div>
+</section>
+
+<h2>Cos'è</h2>
+<p>Un foglio elettronico minimale e veloce, ispirato a VisiCalc. Funziona anche offline (PWA).</p>
+
+<h3>Funzioni principali</h3>
+<ul>
+  <li>Griglia <strong>A..Z × 50 righe</strong></li>
+  <li>Formule con operatori <code>+ - * / ( )</code> e riferimenti <code>A1</code>, <code>$A$1</code>, <code>A$1</code>, <code>$A1</code></li>
+  <li>Funzioni: <code>SUM</code>, <code>AVERAGE</code>, <code>MIN</code>, <code>MAX</code>, <code>IF</code>, <code>VLOOKUP</code> (alias <code>CERCA_VERT</code>)</li>
+  <li>Intervalli rettangolari: es. <code>A1:B3</code></li>
+  <li>Ricalcolo incrementale (grafo dipendenze)</li>
+  <li>Multi-fogli (rinomina + aggiungi)</li>
+  <li>CSV import/export</li>
+</ul>
+
+<h3>Esempi rapidi</h3>
+<pre>=A1+B1
+=SUM(A1:B3)
+=AVERAGE(A1:B3)
+=IF(A1>10, "ALTO", "BASSO")
+=VLOOKUP(A1, A1:B9, 2, TRUE)</pre>
+
+<h3>Note</h3>
+<ul>
+  <li>I valori testuali in operazioni sono trattati come <code>0</code>.</li>
+  <li>Numeri con virgola (es. <code>3,5</code>) accettati.</li>
+  <li>Gli intervalli devono essere continui e rettangolari.</li>
+</ul>
+
+<p class="muted">MIT — © Alessandro Pezzali (pezzaliAPP)</p>
+
+</main>
+
+<script>
+  if (location.hash === '#listen') {
+    window.addEventListener('load', function(){
+      var btn = document.getElementById('ab-play');
+      if(btn) setTimeout(()=>btn.click(), 200);
+    });
+  }
+</script>
+<script src="./audiobook.js"></script>
+</body>
+</html>

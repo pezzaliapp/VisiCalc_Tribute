@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>VisiCalc Tribute — Guida Formule (IT/EN)</title>
+  <title>VisiCalc Tribute — Guida Formule</title>
   <style>
     body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#0b1022;color:#eaf1ff}
     header{position:sticky;top:0;background:#0e1533cc;border-bottom:1px solid #1d244a;padding:12px 16px}
     main{max-width:1000px;margin:0 auto;padding:20px}
     section{margin-bottom:26px;background:#0d1430;border:1px solid #1d244a;border-radius:12px;padding:16px}
     h2{margin:0 0 8px}
-    code,kbd{background:#0b1230;border:1px solid #1d244a;border-radius:6px;padding:2px 6px}
+    code{background:#0b1230;border:1px solid #1d244a;border-radius:6px;padding:2px 6px}
     pre{background:#0b1230;border:1px solid #1d244a;border-radius:10px;padding:12px;overflow:auto}
     table{width:100%;border-collapse:collapse;margin-top:8px}
     th,td{border:1px solid #1d244a;padding:8px;text-align:left}
@@ -19,14 +19,8 @@
   </style>
 </head>
 <body>
-<header><strong>🧮 VisiCalc Tribute — Guida Formule (IT/EN) — v2.4</strong></header>
+<header><strong>🧮 VisiCalc Tribute — Guida Formule (IT/EN)</strong></header>
 <main>
-
-<section>
-  <h2>Panoramica</h2>
-  <p>Il motore supporta operazioni aritmetiche di base, intervalli, funzioni di aggregazione, logica condizionale e ricerca verticale.</p>
-</section>
-
 <section>
   <h2>Operatori</h2>
   <table>
@@ -35,70 +29,24 @@
     <tr><td>Parentesi</td><td><code>=(A1+B1)*C1</code></td><td>Controllo della precedenza</td></tr>
   </table>
 </section>
-
 <section>
-  <h2>Intervalli</h2>
-  <p>Gli intervalli devono essere rettangolari, es. <code>A1:B3</code>.</p>
-</section>
-
-<section>
-  <h2>Funzioni di aggregazione</h2>
+  <h2>Funzioni</h2>
   <table>
     <tr><th>IT</th><th>EN</th><th>Sintassi</th><th>Esempio</th></tr>
-    <tr><td>—</td><td>SUM</td><td><code>=SUM(A1:B3)</code></td><td>Somma dei numeri</td></tr>
+    <tr><td>—</td><td>SUM</td><td><code>=SUM(A1:B3)</code></td><td>Somma</td></tr>
     <tr><td>—</td><td>AVERAGE</td><td><code>=AVERAGE(A1:B3)</code></td><td>Media aritmetica</td></tr>
-    <tr><td>—</td><td>MIN</td><td><code>=MIN(A1:B3)</code></td><td>Valore minimo</td></tr>
-    <tr><td>—</td><td>MAX</td><td><code>=MAX(A1:B3)</code></td><td>Valore massimo</td></tr>
-  </table>
-</section>
-
-<section>
-  <h2>Logica condizionale</h2>
-  <table>
-    <tr><th>IT</th><th>EN</th><th>Sintassi</th><th>Esempio</th></tr>
-    <tr><td>—</td><td>IF</td><td><code>=IF(condizione, valore_se_vero, valore_se_falso)</code></td><td><code>=IF(A1>10, "ALTO", "BASSO")</code></td></tr>
-  </table>
-  <p>Operatori di confronto: <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>=</code>, <code>&lt;&gt;</code>.</p>
-</section>
-
-<section>
-  <h2>Ricerca verticale</h2>
-  <table>
-    <tr><th>IT</th><th>EN</th><th>Sintassi</th><th>Esempio</th></tr>
+    <tr><td>—</td><td>MIN</td><td><code>=MIN(A1:B3)</code></td><td>Minimo</td></tr>
+    <tr><td>—</td><td>MAX</td><td><code>=MAX(A1:B3)</code></td><td>Massimo</td></tr>
     <tr><td>CERCA_VERT (alias)</td><td>VLOOKUP</td><td><code>=VLOOKUP(chiave, A1:B9, indice, [TRUE|FALSE])</code></td><td><code>=VLOOKUP(A1, A1:B9, 2, TRUE)</code></td></tr>
+    <tr><td>—</td><td>IF</td><td><code>=IF(condizione, vero, falso)</code></td><td><code>=IF(A1>10, "ALTO", "BASSO")</code></td></tr>
   </table>
-  <ul>
-    <li><em>indice</em> è la colonna da restituire all'interno dell'intervallo (1 = prima colonna dell'area).</li>
-    <li><em>TRUE</em> = ricerca approssimata; <em>FALSE</em> = ricerca esatta.</li>
-  </ul>
 </section>
-
-<section>
-  <h2>Riferimenti</h2>
-  <ul>
-    <li><code>A1</code> relativo, <code>$A$1</code> assoluto, <code>A$1</code> blocca riga, <code>$A1</code> blocca colonna.</li>
-  </ul>
-</section>
-
 <section>
   <h2>Esempi utili</h2>
-  <pre>
-=SUM(A1:A10)+B1*2
+  <pre>=SUM(A1:A10)+B1*2
 =IF(AVERAGE(A1:A5)>10, MAX(B1:B5), MIN(B1:B5))
-=VLOOKUP(E2, A1:C20, 3, FALSE)
-  </pre>
+=VLOOKUP(E2, A1:C20, 3, FALSE)</pre>
 </section>
-
-<section>
-  <h2>English quick reference</h2>
-  <ul>
-    <li><code>=SUM(A1:B3)</code>, <code>=AVERAGE(A1:B3)</code>, <code>=MIN(A1:B3)</code>, <code>=MAX(A1:B3)</code></li>
-    <li><code>=IF(A1>10, "HIGH", "LOW")</code></li>
-    <li><code>=VLOOKUP(A1, A1:B9, 2, TRUE)</code></li>
-  </ul>
-</section>
-
-<footer><p><em>MIT — © Alessandro Pezzali (pezzaliAPP)</em></p></footer>
 </main>
 </body>
 </html>
